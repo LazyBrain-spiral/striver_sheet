@@ -1,17 +1,67 @@
-// sum of first n numbers
-#include <iostream>
- using namespace std;
 
- void print()
- {
+//fibonachi
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+public:
+    int fib(int n)
+    {
+        if (n == 0 || n == 1)
+        {
+            return n;
+        }
+
+       return fib(n - 1) + fib(n - 2);
+    }
+};
+
+int
+main()
+    {
+        int n;
+        cin >> n;
+
+        int fib(n);
+    }
 
 
- }
 
- int main()
- {
+//Hashing:
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main(){
     int n;
-    cin >> n;
+    cin >> n; //original array to get input from
+    
+    int arr[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
 
+    int hash[12] = {0};
+    for (int i = 0; i < n; i++)
+    {
+        hash[arr[i]] = hash[arr[i]]+1;
+    }
+    //hashing gets added here.basically for precomputing
 
- }
+    int q;
+    cin >> q;
+    while(q--){
+        int number;
+        cin >> number;
+        cout << hash[number] << endl;
+    }
+
+    //this is the output on how many times it has done it already
+
+    
+
+    
+}
