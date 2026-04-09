@@ -62,9 +62,12 @@ int main(){
     //this is the output on how many times it has done it already
     
 }
+<<<<<<< HEAD
 
 
 #character hashing
+=======
+>>>>>>> 612c14cb0b717530e4f43dca9e073a2e42f3a720
 #include <iostream>
 using namespace std;
 
@@ -94,3 +97,9 @@ int main()
 
     return 0;
 }
+<<<<<<< HEAD
+=======
+
+
+//sorting start(mostly was working on a personal project today)
+>>>>>>> 612c14cb0b717530e4f43dca9e073a2e42f3a720
