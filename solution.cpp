@@ -13,52 +13,7 @@ void printArray(const std::vector<int> &arr)
 }
 
 
-void selectionSort(std::vector<int> &arr)
-{
-    int n = arr.size();
-    // Traverse through all array elements
-    for (int i = 0; i < n - 1; i++)
-    {
-        // Find the minimum element in unsorted array
-        int min_idx = i;
-        for (int j = i + 1; j < n; j++)
-        {
-            if (arr[j] < arr[min_idx])
-            {
-                min_idx = j;
-            }
-        }
-        // Swap the found minimum element with the first element
-        std::swap(arr[i], arr[min_idx]);
-    }
-}
 
-// 2. Bubble Sort
-void bubbleSort(std::vector<int> &arr)
-{
-    int n = arr.size();
-    // Traverse through all array elements
-    for (int i = 0; i < n - 1; i++)
-    {
-        bool swapped = false;
-
-        // Last i elements are already in place
-        for (int j = 0; j < n - i - 1; j++)
-        {
-            // Swap if the element found is greater than the next element
-            if (arr[j] > arr[j + 1])
-            {
-                std::swap(arr[j], arr[j + 1]);
-                swapped = true;
-            }
-        }
-        // If no two elements were swapped by inner loop, then break
-        if (!swapped)
-        {
-            break;
-        }
-    }
-}
 
 // 3. Insertion Sort
 void insertionSort(std::vector<int> &arr)
@@ -94,18 +49,112 @@ int main()
     printArray(test_arr1);
     std::cout << "-----------------------" << std::endl;
 
-    // Test Selection Sort
-    selectionSort(test_arr1);
-    std::cout << "Selection Sort: ";
-    printArray(test_arr1);
 
-    // Test Bubble Sort
-    bubbleSort(test_arr2);
-    std::cout << "Bubble Sort:    ";
-    printArray(test_arr2);
-    insertionSort(test_arr3);
-    std::cout << "Insertion Sort: ";
-    printArray(test_arr3);
+    return 0;
+}
+
+#include <iostream>
+#include <vector>
+
+
+void merge(std::vector<int> &arr, int left, int mid, int right)
+{
+    
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+
+    std::vector<int> left_half(n1);
+    std::vector<int> right_half(n2);
+
+    
+    for (int i = 0; i < n1; i++)
+    {
+        left_half[i] = arr[left + i];
+    }
+    for (int j = 0; j < n2; j++)
+    {
+        right_half[j] = arr[mid + 1 + j];
+    }
+
+    
+    int i = 0;    
+    int j = 0;    
+    int k = left; 
+
+    while (i < n1 && j < n2)
+    {
+        if (left_half[i] <= right_half[j])
+        {
+            arr[k] = left_half[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = right_half[j];
+            j++;
+        }
+        k++;
+    }
+
+    
+    while (i < n1)
+    {
+        arr[k] = left_half[i];
+        i++;
+        k++;
+    }
+
+    
+    while (j < n2)
+    {
+        arr[k] = right_half[j];
+        j++;
+        k++;
+    }
+}
+
+
+void mergeSort(std::vector<int> &arr, int left, int right)
+{
+    if (left >= right)
+    {
+        return; 
+    }
+
+    int mid = left + (right - left) / 2;
+
+
+    mergeSort(arr, left, mid);
+    mergeSort(arr, mid + 1, right);
+
+
+    merge(arr, left, mid, right);
+}
+
+void printVector(const std::vector<int> &arr)
+{
+    for (int num : arr)
+    {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+}
+
+
+int main()
+{
+    std::vector<int> unsorted_list = {38, 27, 43, 3, 9, 82, 10};
+
+    std::cout << "Unsorted array: ";
+    printVector(unsorted_list);
+
+    
+    int n = unsorted_list.size();
+    mergeSort(unsorted_list, 0, n - 1);
+
+    std::cout << "Sorted array:   ";
+    printVector(unsorted_list);
 
     return 0;
 }
