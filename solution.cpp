@@ -2,70 +2,51 @@
 #include <vector>
 using namespace std;
 
-void merge(vector<int> &arr, int low, int mid, int high)
-{
-    vector<int> temp;
+// class Solution
+// {
+// public:
+//     bool check(vector<int> &nums)
+//     {
+//         int count = 0;
 
-    int left = low;
-    int right = mid + 1;
+//         for (int i = 0; i<nums.size(); i++)
+//         {
+//             if (nums[i]<=nums[(i+1)%nums.size()])
+//             {
 
-    while (left <= mid && right <= high)
-    {
-        if (arr[left] <= arr[right])
-        {
-            temp.push_back(arr[left]);
-            left++;
-        }
-        else
-        {
-            temp.push_back(arr[right]);
-            right++;
-        }
-    }
+//             }
+//             else{
+//                 count++;
+//             }
+//         }
+//         if (count <= 1)
+//         {
+//             return true;
+//         }
+//         else
+//         {
+//             return false;
+//         }
+//         };
+// };
 
-    // remaining elements
-    while (left <= mid)
-    {
-        temp.push_back(arr[left]);
-        left++;
-    }
+// class Solution
+// {
+// public:
+//     int removeDuplicates(vector<int> &nums)
+//     {
 
-    while (right <= high)
-    {
-        temp.push_back(arr[right]);
-        right++;
-    }
+//         int i = 0;
+//         for (int j = 1; j < nums.size(); j++)
+//         {
+//             if (nums[j]!=nums[i])
+//             {
+//                 nums[i+1] = nums[j];
+//                 i++;
+//             }
 
-    // copy back
-    for (int i = low; i <= high; i++)
-    {
-        arr[i] = temp[i - low];
-    }
-}
+//         }
+//         return (i + 1);
 
-void mergeSort(vector<int> &arr, int low, int high)
-{
-    if (low >= high)
-        return;
-
-    int mid = (low + high) / 2;
-
-    mergeSort(arr, low, mid);
-    mergeSort(arr, mid + 1, high);
-
-    merge(arr, low, mid, high);
-}
-
-int main()
-{
-    vector<int> arr = {5, 3, 8, 2, 1};
-
-    mergeSort(arr, 0, arr.size() - 1);
-
-    for (int x : arr)
-    {
-        cout << x << " ";
-    }
-
-    return 0;
-}
+//     }
+// };
