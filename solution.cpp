@@ -5,48 +5,71 @@ using namespace std;
 // class Solution
 // {
 // public:
-//     bool check(vector<int> &nums)
+//     void rotate(vector<int> &nums, int k)
 //     {
-//         int count = 0;
+//         k = k % nums.size();
+//         vector<int> temp(k);
+//         int j = k;
 
-//         for (int i = 0; i<nums.size(); i++)
+//         for (int i = 0; i < k; i++)
 //         {
-//             if (nums[i]<=nums[(i+1)%nums.size()])
-//             {
-
-//             }
-//             else{
-//                 count++;
-//             }
+//             temp[i] = nums[nums.size() - j];
+//             j--;
 //         }
-//         if (count <= 1)
+
+//         for (int i = nums.size() - 1; i >= k; i--)
 //         {
-//             return true;
+//             nums[i] = nums[i - k];
 //         }
-//         else
+
+//         for (int i = 0; i < k; i++)
 //         {
-//             return false;
+//             nums[i] = temp[i];
 //         }
-//         };
-// };
-
-// class Solution
-// {
-// public:
-//     int removeDuplicates(vector<int> &nums)
-//     {
-
-//         int i = 0;
-//         for (int j = 1; j < nums.size(); j++)
-//         {
-//             if (nums[j]!=nums[i])
-//             {
-//                 nums[i+1] = nums[j];
-//                 i++;
-//             }
-
-//         }
-//         return (i + 1);
+        
 
 //     }
 // };
+
+// int main()
+// {
+//     vector<int> arr = {1, 2, 3, 4, 5};
+//     int k = 2;
+
+//     Solution obj;
+//     obj.rotate(arr, k);
+
+//     return 0;
+// }
+
+
+//REVERSE ARRAY
+
+class Solution
+{
+public:
+    void moveZeroes(vector<int> &nums)
+    {
+        vector<int> temp;
+
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if(nums[i]!=0){
+                temp.push_back(nums[i]);
+            }
+            
+        }
+
+        int zero_count = nums.size() - temp.size();
+
+        nums.clear();
+
+        nums.insert(nums.end(), temp.begin(), temp.end());
+
+        for (int i = 0; i < zero_count; i++)
+        {
+            nums.push_back(0);
+        }
+        
+        }
+};
