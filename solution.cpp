@@ -2,70 +2,68 @@
 #include <vector>
 using namespace std;
 
-void merge(vector<int> &arr, int low, int mid, int high)
+// class Solution
+// {
+// public:
+//     int sortedArray(vector<int> &nums)
+//     {
+//         int count = 0;
+//         int max_count = 0;
+//         for (int i = 0; i < nums.size(); i++)
+//         {
+//             if (nums[i] == 1)
+//             {
+//                 count++;
+//                 if (count > max_count)
+//                 {
+//                     max_count = count;
+//                 }
+//             }
+//             else
+//             {
+
+//                 count = 0;
+//             }
+//         }
+//         return max_count;
+//     }
+// };
+
+// int main()
+// {
+//     vector<int> nums = {1, 1, 0, 0, 1, 1, 1};
+
+//     Solution obj;
+
+//     int result = obj.sortedArray(nums);
+
+//     cout << result;
+// }
+class Solution
 {
-    vector<int> temp;
-
-    int left = low;
-    int right = mid + 1;
-
-    while (left <= mid && right <= high)
+public:
+    int twice(vector<int> &nums)
     {
-        if (arr[left] <= arr[right])
+        int n = nums.size();
+
+        for (int i = 1; i <= n; i++)
         {
-            temp.push_back(arr[left]);
-            left++;
+            int count = 0; 
+
+            for (int j = 0; j < n; j++)
+            {
+                if (nums[j] == i) 
+                {
+                    count++;
+
+                    if (count == 1) 
+                    {
+                        return i; 
+                    }
+                }
+            }
         }
-        else
-        {
-            temp.push_back(arr[right]);
-            right++;
-        }
+
+        return -1; 
     }
-
-    // remaining elements
-    while (left <= mid)
-    {
-        temp.push_back(arr[left]);
-        left++;
-    }
-
-    while (right <= high)
-    {
-        temp.push_back(arr[right]);
-        right++;
-    }
-
-    // copy back
-    for (int i = low; i <= high; i++)
-    {
-        arr[i] = temp[i - low];
-    }
-}
-
-void mergeSort(vector<int> &arr, int low, int high)
-{
-    if (low >= high)
-        return;
-
-    int mid = (low + high) / 2;
-
-    mergeSort(arr, low, mid);
-    mergeSort(arr, mid + 1, high);
-
-    merge(arr, low, mid, high);
-}
-
-int main()
-{
-    vector<int> arr = {5, 3, 8, 2, 1};
-
-    mergeSort(arr, 0, arr.size() - 1);
-
-    for (int x : arr)
-    {
-        cout << x << " ";
-    }
-
-    return 0;
-}
+};
