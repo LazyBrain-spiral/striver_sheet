@@ -5,71 +5,65 @@ using namespace std;
 // class Solution
 // {
 // public:
-//     void rotate(vector<int> &nums, int k)
+//     int sortedArray(vector<int> &nums)
 //     {
-//         k = k % nums.size();
-//         vector<int> temp(k);
-//         int j = k;
-
-//         for (int i = 0; i < k; i++)
+//         int count = 0;
+//         int max_count = 0;
+//         for (int i = 0; i < nums.size(); i++)
 //         {
-//             temp[i] = nums[nums.size() - j];
-//             j--;
-//         }
+//             if (nums[i] == 1)
+//             {
+//                 count++;
+//                 if (count > max_count)
+//                 {
+//                     max_count = count;
+//                 }
+//             }
+//             else
+//             {
 
-//         for (int i = nums.size() - 1; i >= k; i--)
-//         {
-//             nums[i] = nums[i - k];
+//                 count = 0;
+//             }
 //         }
-
-//         for (int i = 0; i < k; i++)
-//         {
-//             nums[i] = temp[i];
-//         }
-        
-
+//         return max_count;
 //     }
 // };
 
 // int main()
 // {
-//     vector<int> arr = {1, 2, 3, 4, 5};
-//     int k = 2;
+//     vector<int> nums = {1, 1, 0, 0, 1, 1, 1};
 
 //     Solution obj;
-//     obj.rotate(arr, k);
 
-//     return 0;
+//     int result = obj.sortedArray(nums);
+
+//     cout << result;
 // }
-
-
-//REVERSE ARRAY
-
 class Solution
 {
 public:
-    void moveZeroes(vector<int> &nums)
+    int twice(vector<int> &nums)
     {
-        vector<int> temp;
+        int n = nums.size();
 
-        for (int i = 0; i < nums.size(); i++)
+        for (int i = 1; i <= n; i++)
         {
-            if(nums[i]!=0){
-                temp.push_back(nums[i]);
+            int count = 0; 
+
+            for (int j = 0; j < n; j++)
+            {
+                if (nums[j] == i) 
+                {
+                    count++;
+
+                    if (count == 1) 
+                    {
+                        return i; 
+                    }
+                }
             }
-            
         }
 
-        int zero_count = nums.size() - temp.size();
-
-        nums.clear();
-
-        nums.insert(nums.end(), temp.begin(), temp.end());
-
-        for (int i = 0; i < zero_count; i++)
-        {
-            nums.push_back(0);
-        }
-        
-        }
+        return -1; 
+    }
 };
